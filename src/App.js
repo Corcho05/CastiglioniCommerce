@@ -1,4 +1,4 @@
-import logo from './img/nosotros.jpg';
+import Header from './components/Header';
 
 import './styles/globals.css';
 import './styles/normalize.css';
@@ -6,7 +6,7 @@ import './styles/normalize.css';
 function App() {
   return (
     <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
+      <Header />
     </div>
   );
 }
