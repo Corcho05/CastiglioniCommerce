@@ -2,32 +2,32 @@ import React from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import logo from '../img/logo.svg';
 import styles from '../styles/Header.module.css'
+import NavBar from './NavBar';
 
 const Header = () => {
     return (
-        <Router>
-            <header className={styles.header}>
-                <div className='contenedor'>
-                    <div className={styles.barra}>
-                        <Link to='/'>
-                            <img
-                                src={logo}
-                                alt="Imagen Logo"
-                                width={400}
-                                height={100}
+        <>
+            <Router>
+                <header className={styles.header}>
+                    <div className='contenedor'>
+                        <div className={styles.barra}>
+                            <Link to='/'>
+                                <img
+                                    src={logo}
+                                    alt="Imagen Logo"
+                                    width={400}
+                                    height={100}
+                                />
+                            </Link>
+                            <NavBar
+                                isFooter={false}
                             />
-                        </Link>
 
-                        <nav className={styles.navegacion}>
-                            <Link to='/'>Inicio</Link>
-                            <Link to='/nosotros'>Nosotros</Link>
-                            <Link to='/blog'>Blog</Link>
-                            <Link to='/tienda'>Tienda</Link>
-                        </nav>
+                        </div>
                     </div>
-                </div>
-            </header>
-        </Router>
+                </header>
+            </Router>
+        </>
     )
 }
 
