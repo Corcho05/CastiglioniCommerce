@@ -1,6 +1,6 @@
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ItemListContainer from './components/ItemListContainer';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import ItemListContainer from './components/main/ItemListContainer';
 import './styles/globals.css';
 import './styles/normalize.css';
 

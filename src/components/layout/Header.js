@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
-import logo from '../img/logo.svg';
-import styles from '../styles/Header.module.css'
-import NavBar from './NavBar';
+import logo from '../../img/logo.svg';
+import styles from '../../styles/Header.module.css'
+import NavBar from '../layout/NavBar';
 
 const Header = () => {
     return (

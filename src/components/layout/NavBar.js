@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import stylesH from '../styles/Header.module.css'
-import stylesF from '../styles/Footer.module.css'
-import CartWidget from './CartWidget';
+import stylesH from '../../styles/Header.module.css'
+import stylesF from '../../styles/Footer.module.css'
+import CartWidget from '../CartWidget';
 const NavBar = ({ isFooter }) => {
 
     return (
