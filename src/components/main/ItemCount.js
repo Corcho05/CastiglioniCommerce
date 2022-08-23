@@ -5,15 +5,19 @@ import add from '../../img/add.png'
 import remove from '../../img/remove.png'
 const ItemCount = () => {
     //Estado para el contador de items
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1)
 
     //Funcion para aumentar el contador de items
     const suma = () => {
-        setCount(count + 1)
+        if (count < 5) {
+            setCount(count + 1)
+        } else {
+            alert('Llegó al máximo de items')
+        }
     }
     //Funcion para disminuir el contador de items
     const resta = () => {
-        if (count > 0) {
+        if (count > 1) {
             setCount(count - 1)
         }
     }
@@ -34,9 +38,7 @@ const ItemCount = () => {
             >
                 <label htmlFor="">Cantidad: {count}</label>
                 <div className={styles.formInline}>
-
                     <label ><img alt='Agregar al Carrito' src={remove} onClick={resta} /></label>
-
                     <label ><img alt='Agregar al Carrito' src={add} onClick={suma} /></label>
                 </div>
                 <input type='submit' value='Agregar al Carrito' />
