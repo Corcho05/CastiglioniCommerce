@@ -3,13 +3,13 @@ import styles from '../../styles/ItemCount.module.css';
 import add from '../../img/add.png'
 
 import remove from '../../img/remove.png'
-const ItemCount = () => {
+const ItemCount = ({ tope, addItemsCar }) => {
     //Estado para el contador de items
     const [count, setCount] = useState(1)
 
     //Funcion para aumentar el contador de items
     const suma = () => {
-        if (count < 5) {
+        if (count < tope) {
             setCount(count + 1)
         } else {
             alert('Llegó al máximo de items')
@@ -25,7 +25,7 @@ const ItemCount = () => {
     const onSubmit = (e) => {
         //Prevenir el comportamiento por defecto del formulario
         e.preventDefault()
-        count > 0 ? alert(`Has añadido ${count} items al carrito`) : alert('No has añadido ningún item')
+        count > 0 ? addItemsCar(count) : alert('No has añadido ningún item')
         // alert(`Has añadido ${count} items al carrito`)
     }
 
@@ -38,8 +38,8 @@ const ItemCount = () => {
             >
                 <label htmlFor="">Cantidad: {count}</label>
                 <div className={styles.formInline}>
-                    <label ><img alt='Agregar al Carrito' src={remove} onClick={resta} /></label>
-                    <label ><img alt='Agregar al Carrito' src={add} onClick={suma} /></label>
+                    <label ><img alt='Restar Cantidad' src={remove} onClick={resta} /></label>
+                    <label ><img alt='Sumar Cantidad' src={add} onClick={suma} /></label>
                 </div>
                 <input type='submit' value='Agregar al Carrito' />
             </form>
