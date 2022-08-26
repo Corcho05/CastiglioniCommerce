@@ -1,24 +1,42 @@
-import React, { useState } from 'react'
-import ItemCount from './ItemCount'
-import styles from '../../styles/Listado.module.css';
+import React, { useState, useEffect } from 'react'
+import { guitarsM } from '../../mock/products';
+import ItemListGuitarras from './ItemListGuitarras';
 
 const ItemListContainer = ({ saludo }) => {
-    //función para añadir los items al carrito
-    const addItemsCar = (cantidad) => {
-        alert(`Has añadido ${cantidad} items al carrito`)
-    }
+    const [guitars, setGuitars] = useState([])
+    const [loading, setLoading] = useState(true);
+    //Promisse
+
+    //useEffect para actualizar el state de guitars
+    useEffect(() => {
+
+        console.log('USEEFECT')
+        const getGuitars = new Promise((res, rej) => {
+            setTimeout(() => {
+                console.log('promise')
+                res(guitarsM)
+            }, 3000);
+        });
+
+        getGuitars.then(data => {
+            console.log('then');
+            setLoading(false);
+            setGuitars(data)
+        })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
+                console.log('Finalizó la promesa')
+            });
+
+    }, [])
 
     return (
 
         <main className='contenedor'>
             <h1 className='heading'>Nuestra Colección</h1>
-            <div className={styles.listado}>
-                <ItemCount
-                    tope={10}
-                    addItemsCar={addItemsCar}
-                />
-            </div>
-
+            <ItemListGuitarras guitars={guitars} loading={loading} />
         </main>
     )
 }

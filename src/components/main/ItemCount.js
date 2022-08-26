@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../../styles/ItemCount.module.css';
 import add from '../../img/add.png'
 
 import remove from '../../img/remove.png'
-const ItemCount = ({ tope, addItemsCar }) => {
+const ItemCount = ({ stock, addItemsCar }) => {
     //Estado para el contador de items
     const [count, setCount] = useState(1)
 
     //Funcion para aumentar el contador de items
     const suma = () => {
-        if (count < tope) {
+        if (count < stock) {
             setCount(count + 1)
         } else {
             alert('Llegó al máximo de items')
@@ -28,22 +28,26 @@ const ItemCount = ({ tope, addItemsCar }) => {
         count > 0 ? addItemsCar(count) : alert('No has añadido ningún item')
         // alert(`Has añadido ${count} items al carrito`)
     }
+    useEffect(() => {
+        if (stock === 0) setCount(0)
+    }, [stock])
+
 
     return (
-        <div>
-            <h1>Desde ItemCount.js</h1>
-            <form
-                className={styles.formulario}
-                onSubmit={onSubmit}
-            >
-                <label htmlFor="">Cantidad: {count}</label>
-                <div className={styles.formInline}>
-                    <label ><img alt='Restar Cantidad' src={remove} onClick={resta} /></label>
-                    <label ><img alt='Sumar Cantidad' src={add} onClick={suma} /></label>
-                </div>
-                <input type='submit' value='Agregar al Carrito' />
-            </form>
-        </div>
+
+        <form
+            className={styles.formulario}
+            onSubmit={onSubmit}
+        >
+            <label htmlFor="">Cantidad: {count}</label>
+            <div className={styles.formInline}>
+                <label ><img alt='Restar Cantidad' src={remove} onClick={resta} /></label>
+                <label ><img alt='Sumar Cantidad' src={add} onClick={stock === 0 ? () => alert("No hay stock") : suma} /></label>
+            </div>
+            {stock === 0 ? <p>No hay stock</p> : <input type="submit" value="Añadir al carrito" />}
+
+        </form>
+
     )
 }
 
