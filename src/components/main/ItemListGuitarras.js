@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Listado.module.css';
 import ItemGuitarra from './ItemGuitarra';
 
-const ItemListGuitarras = ({ guitars, loading }) => {
-    const [render, setRender] = useState(false);
-    useEffect(() => {
-        setRender(true);
+const ItemListGuitarras = ({ guitars, setShowDetail }) => {
+    // const [render, setRender] = useState(false);
+    // useEffect(() => {
+    //     setRender(true);
 
-    }, [loading])
+    // }, [loading])
 
-    if (!render) return null;
+    // if (!render) return null;
     return (
         <div className={styles.listado}>
             {guitars.map(guitar => {
@@ -17,6 +17,7 @@ const ItemListGuitarras = ({ guitars, loading }) => {
                     <ItemGuitarra
                         key={guitar.id}
                         guitar={guitar}
+                        setShowDetail={setShowDetail}
                     />
                 )
             }

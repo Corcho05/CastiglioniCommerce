@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { guitarsM } from '../../mock/products';
 import ItemListGuitarras from './ItemListGuitarras';
 
-const ItemListContainer = ({ saludo }) => {
+const ItemListContainer = ({ saludo, addItemsCar, setShowDetail }) => {
     const [guitars, setGuitars] = useState([])
     const [loading, setLoading] = useState(true);
     //Promisse
 
-    //useEffect para actualizar el state de guitars
     useEffect(() => {
 
-        console.log('USEEFECT')
+
         const getGuitars = new Promise((res, rej) => {
             setTimeout(() => {
                 console.log('promise')
@@ -35,8 +34,15 @@ const ItemListContainer = ({ saludo }) => {
     return (
 
         <main className='contenedor'>
-            <h1 className='heading'>Nuestra Colección</h1>
-            <ItemListGuitarras guitars={guitars} loading={loading} />
+            <h3 className='heading'>Nuestra Colección</h3>
+            {loading ? <h2>Cargando...</h2>
+                : <ItemListGuitarras
+                    guitars={guitars}
+                    addItemsCar={addItemsCar}
+                    setShowDetail={setShowDetail}
+                />
+            }
+
         </main>
     )
 }

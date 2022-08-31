@@ -1,12 +1,8 @@
 import React from 'react'
-import ItemCount from './ItemCount'
-import styles from '../../styles/Guitarra.module.css';
-const ItemGuitarra = ({ guitar }) => {
-    //función para añadir los items al carrito
 
-    const addItemsCar = (cantidad) => {
-        alert(`Has añadido ${cantidad} items al carrito`)
-    }
+import styles from '../../styles/Guitarra.module.css';
+const ItemGuitarra = ({ guitar, setShowDetail }) => {
+
 
     return (
         <div className={styles.guitarra}>
@@ -15,10 +11,7 @@ const ItemGuitarra = ({ guitar }) => {
                 <h3>{guitar.title}</h3>
                 <p className={styles.descriptions}>{guitar.descriptions}</p>
                 <p className={styles.price}>$ {guitar.price}</p>
-                <ItemCount
-                    stock={guitar.stock}
-                    addItemsCar={addItemsCar}
-                />
+                <input type="button" value="Ver Detales" onClick={() => setShowDetail(true)} />
             </div>
         </div>
     )

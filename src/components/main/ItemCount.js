@@ -3,7 +3,7 @@ import styles from '../../styles/ItemCount.module.css';
 import add from '../../img/add.png'
 
 import remove from '../../img/remove.png'
-const ItemCount = ({ stock, addItemsCar }) => {
+const ItemCount = ({ stock, onAdd }) => {
     //Estado para el contador de items
     const [count, setCount] = useState(1)
 
@@ -25,7 +25,7 @@ const ItemCount = ({ stock, addItemsCar }) => {
     const onSubmit = (e) => {
         //Prevenir el comportamiento por defecto del formulario
         e.preventDefault()
-        count > 0 ? addItemsCar(count) : alert('No has añadido ningún item')
+        count > 0 ? onAdd(count) : alert('No has añadido ningún item')
         // alert(`Has añadido ${count} items al carrito`)
     }
     useEffect(() => {
