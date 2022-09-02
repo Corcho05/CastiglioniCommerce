@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { guitarsM } from '../../mock/products';
+import { productsM } from '../../mock/products';
+import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
 
-const ItemDetailContainer = ({ setShowDetail, onAdd }) => {
+const ItemDetailContainer = ({ onAdd }) => {
     const [guitar, setGuitar] = useState({})
     const [loading, setLoading] = useState(true);
+    //LEO EL PARAMETRO DE LA URL
+    const { idItem } = useParams();
+
     //Promisse
 
     useEffect(() => {
+        setLoading(true);
 
-        const getGuitars = new Promise((res, rej) => {
+        const getProducts = new Promise((res, rej) => {
             setTimeout(() => {
-                console.log('promise')
-                res(guitarsM)
+                let productF = productsM.find(product => product.id === Number(idItem));
+                res(productF)
             }, 3000);
         });
 
-        getGuitars.then(data => {
+        getProducts.then(data => {
 
-            let guitar = data.find(guitar => guitar.id === 1)
-            setGuitar(guitar)
+
+            setGuitar(data)
             setLoading(false);
         })
             .catch(err => {
@@ -29,12 +34,8 @@ const ItemDetailContainer = ({ setShowDetail, onAdd }) => {
                 console.log('Finalizó la promesa')
             });
 
-    }, [])
+    }, [idItem])
 
-
-    const setShowDet = (show) => {
-        setShowDetail(show)
-    }
 
     return (
         <div >
@@ -43,7 +44,6 @@ const ItemDetailContainer = ({ setShowDetail, onAdd }) => {
                     : <ItemDetail
                         guitar={guitar}
                         onAdd={onAdd}
-                        setShowDet={setShowDet}
                     />
             }
 

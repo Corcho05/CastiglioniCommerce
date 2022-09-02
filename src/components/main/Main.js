@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ItemListContainer from './ItemListContainer';
-
+import { Routes, Route } from 'react-router-dom'
 import ItemDetailContainer from './ItemDetailContainer';
 
 const Main = () => {
     //función para añadir los items al carrito
-    const [showDetail, setShowDetail] = useState(false)
+
     const onAdd = (cant) => {
 
         alert(`Has añadido ${cant} items al carrito`)
@@ -13,22 +13,25 @@ const Main = () => {
     }
     return (
         <div>
-            {showDetail
-                ? <ItemDetailContainer
-                    onAdd={onAdd}
-                    setShowDetail={setShowDetail}
-                />
-                : <ItemListContainer
-                    saludo='Buenos Días'
-                    setShowDetail={setShowDetail}
+            <Routes>
+                <Route
+                    path='/'
+                    element={<ItemListContainer saludo="Bienvenidos" />}
 
                 />
-            }
+                <Route
+                    path='/category/:categoryName'
+                    element={<ItemListContainer saludo="Bienvenidos" />}
 
+                />
+                <Route
+                    path='/item/:idItem'
+                    element={<ItemDetailContainer onAdd={onAdd} />}
 
-
-
+                />
+            </Routes>
         </div>
+
     )
 }
 

@@ -1,7 +1,8 @@
 import React from 'react'
-import styles from '../../styles/Guitarra.module.css';
+import { Link } from 'react-router-dom';
+import styles from '../../styles/Item.module.css';
 import ItemCount from './ItemCount';
-const ItemDetail = ({ guitar, onAdd, setShowDet }) => {
+const ItemDetail = ({ guitar, onAdd }) => {
 
     return (
         <div key={guitar.id} className={styles.contenido}>
@@ -11,8 +12,12 @@ const ItemDetail = ({ guitar, onAdd, setShowDet }) => {
                 stock={guitar.stock}
                 onAdd={onAdd}
             />
-            <input type="button" value="Volver" onClick={() => setShowDet(false)} />
-        </div>
+            <Link
+                to='/'
+                className={styles.btn}
+            >Volver</Link>
+
+        </div >
     )
 }
 

@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react'
-import { guitarsM } from '../../mock/products';
-import ItemListGuitarras from './ItemListGuitarras';
+import { useParams } from 'react-router-dom'
+import { productsM } from '../../mock/products';
+import ItemList from './ItemList';
 
-const ItemListContainer = ({ saludo, addItemsCar, setShowDetail }) => {
-    const [guitars, setGuitars] = useState([])
+const ItemListContainer = ({ saludo, addItemsCar }) => {
+    const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true);
+    //LEO EL PARAMETRO DE LA URL
+    const { categoryName } = useParams();
+
     //Promisse
-
     useEffect(() => {
+        setLoading(true);
 
-
-        const getGuitars = new Promise((res, rej) => {
+        const getProducts = new Promise((res, rej) => {
             setTimeout(() => {
-                console.log('promise')
-                res(guitarsM)
+                let productsF = categoryName ? productsM.filter(product => product.category === categoryName) : productsM;
+                console.log(productsF)
+                res(productsF)
             }, 3000);
         });
 
-        getGuitars.then(data => {
-            console.log('then');
+        getProducts.then(data => {
+            console.log("data", data)
+
             setLoading(false);
-            setGuitars(data)
+            setProducts(data)
+            console.log('products1', products)
         })
             .catch(err => {
                 console.log(err)
@@ -29,17 +35,18 @@ const ItemListContainer = ({ saludo, addItemsCar, setShowDetail }) => {
                 console.log('Finalizó la promesa')
             });
 
-    }, [])
+    }, [categoryName])
 
     return (
 
         <main className='contenedor'>
-            <h3 className='heading'>Nuestra Colección</h3>
+            <h3 className='heading'>{saludo}</h3>
+            <h3 className='heading'>Nuestros Productos</h3>
             {loading ? <h2>Cargando...</h2>
-                : <ItemListGuitarras
-                    guitars={guitars}
+                : <ItemList
+                    products={products}
                     addItemsCar={addItemsCar}
-                    setShowDetail={setShowDetail}
+
                 />
             }
 
