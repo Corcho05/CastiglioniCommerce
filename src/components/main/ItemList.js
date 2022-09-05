@@ -10,7 +10,7 @@ const ItemList = ({ products }) => {
     // }, [loading])
 
     // if (!render) return null;
-    console.log('products', products)
+    // console.log('products', products)
     return (
 
         <div className={styles.listado} >

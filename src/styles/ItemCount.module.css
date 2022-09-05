@@ -51,7 +51,9 @@
 .formInline label {
   margin: 5px 10px 5px 0;
 }
-
+.labelFormInline {
+  margin: 5px 10px 5px 0;
+}
 .formInline img{
     width: 30px;
     height: 30px;

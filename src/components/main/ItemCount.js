@@ -3,9 +3,9 @@ import styles from '../../styles/ItemCount.module.css';
 import add from '../../img/add.png'
 
 import remove from '../../img/remove.png'
-const ItemCount = ({ stock, onAdd }) => {
+const ItemCount = ({ stock, initial, onAdd }) => {
     //Estado para el contador de items
-    const [count, setCount] = useState(1)
+    const [count, setCount] = useState(initial)
 
     //Funcion para aumentar el contador de items
     const suma = () => {
@@ -41,7 +41,7 @@ const ItemCount = ({ stock, onAdd }) => {
         >
             <label htmlFor="">Cantidad: {count}</label>
             <div className={styles.formInline}>
-                <label ><img alt='Restar Cantidad' src={remove} onClick={resta} /></label>
+                <label className={styles.labelFormInline}><img alt='Restar Cantidad' src={remove} onClick={resta} /></label>
                 <label ><img alt='Sumar Cantidad' src={add} onClick={stock === 0 ? () => alert("No hay stock") : suma} /></label>
             </div>
             {stock === 0 ? <p>No hay stock</p> : <input type="submit" value="Añadir al carrito" />}

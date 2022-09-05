@@ -3,7 +3,7 @@ import { productsM } from '../../mock/products';
 import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
 
-const ItemDetailContainer = ({ onAdd }) => {
+const ItemDetailContainer = () => {
     const [guitar, setGuitar] = useState({})
     const [loading, setLoading] = useState(true);
     //LEO EL PARAMETRO DE LA URL
@@ -43,7 +43,6 @@ const ItemDetailContainer = ({ onAdd }) => {
                 loading ? <h2>Cargando...</h2>
                     : <ItemDetail
                         guitar={guitar}
-                        onAdd={onAdd}
                     />
             }
 

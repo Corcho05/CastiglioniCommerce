@@ -13,7 +13,7 @@ const ItemGuitarra = ({ guitar }) => {
                 <p className={styles.price}>$ {guitar.price}</p>
                 <Link
                     to={`/item/${guitar.id}`}
-                    className={styles.btn}
+                    style={{ textDecoration: 'none' }}
                 >Ver Detalle</Link>
 
 
