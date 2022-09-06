@@ -18,15 +18,15 @@ const ItemList = ({ products }) => {
                 products.map(product => {
                     return (
                         <Item
-                            key={products.id}
-                            guitar={product}
+                            key={product.id}
+                            product={product}
 
                         />
                     )
                 }
                 )
             }
-        </div>
+        </div >
     )
 }
 

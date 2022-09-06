@@ -3,7 +3,8 @@ import styles from '../../styles/ItemCount.module.css';
 import add from '../../img/add.png'
 
 import remove from '../../img/remove.png'
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ product, stock, initial, onAdd }) => {
+
     //Estado para el contador de items
     const [count, setCount] = useState(initial)
 
@@ -31,7 +32,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     useEffect(() => {
         if (stock === 0) setCount(0)
     }, [stock])
-
 
     return (
 

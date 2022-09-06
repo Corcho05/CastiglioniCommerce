@@ -5,13 +5,16 @@ import Footer from './components/layout/Footer';
 import './styles/globals.css';
 import './styles/normalize.css';
 import Main from './components/main/Main';
+import { CartProvider } from './context/cartContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Main />
-      <Footer />
+      <CartProvider>
+        <Header />
+        <Main />
+        <Footer />
+      </CartProvider>
     </BrowserRouter>
   );
 }

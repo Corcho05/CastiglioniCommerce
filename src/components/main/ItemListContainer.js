@@ -16,17 +16,17 @@ const ItemListContainer = ({ saludo, addItemsCar }) => {
         const getProducts = new Promise((res, rej) => {
             setTimeout(() => {
                 let productsF = categoryName ? productsM.filter(product => product.category === categoryName) : productsM;
-                console.log(productsF)
+
                 res(productsF)
             }, 3000);
         });
 
         getProducts.then(data => {
-            console.log("data", data)
+
 
             setLoading(false);
             setProducts(data)
-            console.log('products1', products)
+
         })
             .catch(err => {
                 console.log(err)

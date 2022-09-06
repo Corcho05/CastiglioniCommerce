@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = () => {
-    const [guitar, setGuitar] = useState({})
+    const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true);
     //LEO EL PARAMETRO DE LA URL
     const { idItem } = useParams();
@@ -24,7 +24,7 @@ const ItemDetailContainer = () => {
         getProducts.then(data => {
 
 
-            setGuitar(data)
+            setProduct(data)
             setLoading(false);
         })
             .catch(err => {
@@ -42,7 +42,7 @@ const ItemDetailContainer = () => {
             {
                 loading ? <h2>Cargando...</h2>
                     : <ItemDetail
-                        guitar={guitar}
+                        product={product}
                     />
             }
 
