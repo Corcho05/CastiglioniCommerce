@@ -27,13 +27,13 @@ const ItemDetail = ({ product }) => {
                 <p>{product.descriptions}</p>
                 {count === 0
                     ? <ItemCount product={product} stock={product.stock} initial={1} onAdd={onAdd} />
-                    : <div><Link to='/cart' style={{ textDecoration: 'none' }}><button>Ir al Carrito</button></Link></div>
+                    : <div><Link to='/cart' style={{ textDecoration: 'none' }}><button>Finalizar compra</button></Link></div>
                 }
 
                 <Link
                     to='/'
                     className={{ textDecoration: 'none' }}
-                >Volver</Link>
+                >Seguir comprando</Link>
             </div>
         </div >
     )

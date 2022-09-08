@@ -1,40 +1,42 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import styles from '../../styles/Item.module.css';
+import stylesC from '../../styles/Cart.module.css'
 import useCart from '../../hooks/useCart';
 const Cart = () => {
-    const { cart } = useCart();
-    console.log(cart);
+    const { cart, removeItem } = useCart();
+
     return (
 
+        <Fragment>
+            <div className='contenedor'>
+                <h3 className='heading'>Carrito de compras</h3>
 
-        <div className={styles.cart}>
-            <h2>Carrito de compras</h2>
-            <div className={styles.cart__items}>
                 {
                     cart.length === 0
                         ?
-                        <di>
+                        <div>
                             <h3>No hay items en el carrito</h3>
                             <Link to='/' style={{ textDecoration: 'none' }}><button>Ir a la tienda</button></Link>
-                        </di>
+                        </div>
 
                         : cart.map((item) => (
 
-                            <div key={item.id} className={styles.cart__item}>
-                                <img src={item.item.img} alt={item.item.title} width={100} height={150} />
+                            <div key={item.id} className={stylesC.guitarra}>
+                                <img src={item.img} alt={item.title} width={100} height={150} />
                                 <div className={styles.cart__itemInfo}>
-                                    <h3>{item.item.title}</h3>
-                                    <p>{item.item.descriptions}</p>
-                                    <p>Precio: ${item.item.price}</p>
+                                    <h3>{item.title}</h3>
+
+                                    <p>Precio: ${item.price}</p>
                                     <p>Cantidad: {item.quantity}</p>
-                                    <p>Total: ${item.item.price * item.quantity}</p>
+                                    <p>Total: ${Number.parseFloat(item.price * item.quantity)}</p>
+                                    <button onClick={() => removeItem(item.id)}>Eliminar</button>
                                 </div>
                             </div>
                         ))
                 }
             </div>
-        </div>
+        </Fragment>
     )
 }
 
