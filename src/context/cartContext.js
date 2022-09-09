@@ -6,9 +6,10 @@ const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
     const addItem = (item, quantity) => {
-        //console.log(item)
+        console.log(item)
         //console.log({ ...item, quantity })
         if (isInCart(item.id)) {
+            console.log('Ya esta en el carrito ', item.id)
             //Si existe hago un map para sumarle la cantidad que quiero agregar
             const newCart = cart.map((cartItem) => {
                 if (cartItem.id === item.id) {
@@ -19,6 +20,7 @@ const CartProvider = ({ children }) => {
             });
             setCart(newCart);
         } else {
+            console.log('No existe');
             //Si no existe lo agrego al carrito
             setCart([...cart, { ...item, quantity }]);
         }
