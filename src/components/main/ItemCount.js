@@ -3,10 +3,20 @@ import styles from '../../styles/ItemCount.module.css';
 import add from '../../img/add.png'
 
 import remove from '../../img/remove.png'
-const ItemCount = ({ product, stock, initial, onAdd }) => {
+const ItemCount = ({ product, stock = 1, initial = 1, onAdd, added }) => {
 
     //Estado para el contador de items
     const [count, setCount] = useState(initial)
+    const [stockCount, setStockCount] = useState(stock)
+
+
+    useEffect(() => {
+        setCount(initial)
+    }, [initial])
+
+    useEffect(() => {
+        setStockCount(stock)
+    }, [stock])
 
     //Funcion para aumentar el contador de items
     const suma = () => {
@@ -38,12 +48,31 @@ const ItemCount = ({ product, stock, initial, onAdd }) => {
         <form
             className={styles.formulario}
             onSubmit={onSubmit}
+            style={{
+                border: '1px solid black',
+                width: 250,
+                borderRadius: '8px',
+                display: 'flex',
+                justifyContent: 'space-around',
+                padding: '3px',
+                margin: '4px',
+            }}
         >
-            <label htmlFor="">Cantidad: {count}</label>
-            <div className={styles.formInline}>
+            <p style={{ padding: '3px', }}><label htmlFor="">Cantidad: {count}</label></p>
+
+            <div className={styles.formInline} style={{ padding: '3px', }}>
                 <label className={styles.labelFormInline}><img alt='Restar Cantidad' src={remove} onClick={resta} /></label>
                 <label ><img alt='Sumar Cantidad' src={add} onClick={stock === 0 ? () => alert("No hay stock") : suma} /></label>
             </div>
+            {added > 0
+                ? <p style={{
+                    border: '1px solid #e99401',
+                    borderRadius: '8px',
+                    margin: '8px',
+                    padding: '1px',
+                }}>
+                    <label htmlFor="">Agregados al carrito : {added}</label></p>
+                : null}
             {stock === 0 ? <p>No hay stock</p> : <input type="submit" value="Añadir al carrito" />}
 
         </form>
