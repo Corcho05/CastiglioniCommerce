@@ -9,9 +9,29 @@ const NavBar = ({ isFooter }) => {
     return (
         <>
             <nav className={isFooter ? stylesF.navegacion : stylesH.navegacion}>
-                <NavLink to='/'>Inicio</NavLink>
-                <NavLink to='/category/Guitarra'>Guitarras</NavLink>
-                <NavLink to='/category/Curso'>Cursos</NavLink>
+                <NavLink
+                    to='/'
+                    className={({ isActive }) =>
+                        isActive ? "active" : undefined
+                    }
+                >Inicio</NavLink>
+                <NavLink
+                    to='/category/Guitarra'
+                    className={({ isActive }) =>
+                        isActive ? "active" : undefined
+                    }
+                >Guitarras</NavLink>
+                <NavLink
+                    to='/category/Curso'
+                    className={({ isActive }) =>
+                        isActive ? "active" : undefined
+                    }
+                >Cursos</NavLink>
+                <NavLink
+                    to='/category/Puas'
+                    className={({ isActive }) =>
+                        isActive ? "active" : undefined
+                    }>Púas</NavLink>
 
                 {isFooter ? null :
                     cart.length === 0 ? null : <CartWidget />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import carrito from '../img/carrito.png';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styles from '../styles/Carrito.module.css';
 import useCart from '../hooks/useCart';
 const CartWidget = () => {
@@ -26,10 +26,12 @@ const CartWidget = () => {
             <ul className={styles.menu}>
                 <li className={styles.spanHover} >
                     {cart.length === 0 ? null : <span className={styles.blue}>{totalItem}</span>}
-                    <Link
+                    <NavLink
                         to='/cart'
                         data-bubble="6"
-
+                        className={({ isActive }) =>
+                            isActive ? "active" : undefined
+                        }
                     >
                         <img
                             src={carrito}
@@ -38,7 +40,7 @@ const CartWidget = () => {
                             height={25}
                         />
 
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </div>

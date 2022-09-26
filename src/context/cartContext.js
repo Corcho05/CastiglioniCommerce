@@ -1,17 +1,14 @@
 import React, { useState, createContext } from 'react';
-import { collection, getFirestore, addDoc } from 'firebase/firestore';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
-    const [orderId, setOrderId] = useState([]);
+
 
     const addItem = (item, quantity) => {
-        console.log(item)
-        //console.log({ ...item, quantity })
+
         if (isInCart(item.id)) {
-            //console.log('Ya esta en el carrito ', item.id)
             //Si existe hago un map para sumarle la cantidad que quiero agregar
             const newCart = cart.map((cartItem) => {
                 if (cartItem.id === item.id) {
@@ -22,7 +19,7 @@ const CartProvider = ({ children }) => {
             });
             setCart(newCart);
         } else {
-            //console.log('No existe');
+
             //Si no existe lo agrego al carrito
             setCart([...cart, { ...item, quantity }]);
         }
@@ -59,36 +56,9 @@ const CartProvider = ({ children }) => {
     const getProductQuantity = (itemId) => {
         const item = cart.find((cartItem) => cartItem.id === itemId);
         return item?.quantity;
-        //optional chaining, controla que si no existe el item no se rompa
+        //optional chaining, controla que si no existe el item no se rompa el código
     };
-    const sendOrders = (buyer) => {
-        const newCart = cart.map((cartItem) => {
-            return {
-                id: cartItem.id,
-                title: cartItem.title,
-                quantity: cartItem.quantity,
-                price: cartItem.price,
-            }
-        });
-        const newOrder = {
-            buyer: buyer,
-            items: newCart,
-            total: getTotalPrice(),
-        };
-        console.log(newOrder);
-        //TENGO QUE ENVIAR A FIRESTORE
-        //Referencio la colección donde voy a guardar los datos
-        const db = getFirestore();
-        const ordersCollection = collection(db, 'orders');
 
-        addDoc(ordersCollection, newOrder)
-            .then(({ id }) => setOrderId(id))
-            .catch((error) => console.log(error))
-            .finally(() => {
-                clear();
-            });
-
-    };
     return (
         <CartContext.Provider
             value={{
@@ -99,7 +69,6 @@ const CartProvider = ({ children }) => {
                 getTotalItems,
                 getTotalPrice,
                 getProductQuantity,
-                sendOrders,
                 isInCart
             }}>
             {children}
