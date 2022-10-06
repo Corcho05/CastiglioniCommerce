@@ -11,11 +11,11 @@ const ItemListContainer = ({ saludo, addItemsCar }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [msgerror, setMsgError] = useState("");
-    //LEO EL PARAMETRO DE LA URL
+
     const { categoryName } = useParams();
     useEffect(() => {
         setLoading(true);
-        //Para poder utilizar el await tengo que crear una función async
+
         if (!categoryName) {
 
             const itemsCollection = collection(db, "items");
@@ -28,7 +28,7 @@ const ItemListContainer = ({ saludo, addItemsCar }) => {
 
                 setLoading(false);
             }).catch((error) => {
-                //  console.log('Error searching items', error);
+
                 setError('Hubo un error al cargar los productos, consulte con el administrador.');
             }).finally(() => {
                 setLoading(false);

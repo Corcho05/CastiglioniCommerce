@@ -11,12 +11,12 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    //LEO EL PARAMETRO DE LA URL
+
     const { idItem } = useParams();
 
     useEffect(() => {
         setLoading(true);
-        //Para poder utilizar el await tengo que crear una función async
+
         const getDocFirebase = async () => {
 
             const docRef = doc(db, "items", idItem);
@@ -28,7 +28,7 @@ const ItemDetailContainer = () => {
                 setError(false);
 
             } else {
-                // No existe el documento se agrega un time out para ver el efecto
+
                 setTimeout(() => {
                     setLoading(false);
                     setError(true);
@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
                 }, 1000);
             }
         }
-        //Llamo a la función async que consulta a firebase
+
         getDocFirebase();
 
     }, [idItem])

@@ -37,6 +37,7 @@ const Cart = () => {
                     handleId={handleid}
                     handleSowForm={handleShowForm}
                     totalPrice={totalPrice}
+
                 />
             </div>
         )

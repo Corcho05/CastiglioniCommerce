@@ -5,15 +5,15 @@ import ItemCount from './ItemCount';
 import useCart from '../../hooks/useCart';
 
 const ItemDetail = ({ product }) => {
-    //Context para el carrito
+
     const { addItem, getProductQuantity } = useCart();
 
     const [count, setCount] = useState(0);
 
-    //función para añadir los items al carrito
+
     const onAdd = (cant) => {
 
-        //alert(`Has añadido ${cant} items al carrito`)
+
         setCount(cant);
 
         addItem(product, cant);

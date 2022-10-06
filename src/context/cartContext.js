@@ -9,7 +9,7 @@ const CartProvider = ({ children }) => {
     const addItem = (item, quantity) => {
 
         if (isInCart(item.id)) {
-            //Si existe hago un map para sumarle la cantidad que quiero agregar
+
             const newCart = cart.map((cartItem) => {
                 if (cartItem.id === item.id) {
                     return { ...item, quantity: cartItem.quantity + quantity };
@@ -20,7 +20,7 @@ const CartProvider = ({ children }) => {
             setCart(newCart);
         } else {
 
-            //Si no existe lo agrego al carrito
+
             setCart([...cart, { ...item, quantity }]);
         }
     };
@@ -35,7 +35,7 @@ const CartProvider = ({ children }) => {
     };
 
     const isInCart = (itemId) => {
-        return cart.some((cartItem) => cartItem.id === itemId); //Devuelve true o false si existe el item en el carrito
+        return cart.some((cartItem) => cartItem.id === itemId);
     };
     const getTotalItems = () => {
         let total = 0;
@@ -56,7 +56,6 @@ const CartProvider = ({ children }) => {
     const getProductQuantity = (itemId) => {
         const item = cart.find((cartItem) => cartItem.id === itemId);
         return item?.quantity;
-        //optional chaining, controla que si no existe el item no se rompa el código
     };
 
     return (

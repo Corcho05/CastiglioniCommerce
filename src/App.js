@@ -8,15 +8,15 @@ import Main from './components/main/Main';
 import { CartProvider } from './context/cartContext';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <CartProvider>
-        <Header />
-        <Main />
-        <Footer />
-      </CartProvider>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <CartProvider>
+                <Header />
+                <Main />
+                <Footer />
+            </CartProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
